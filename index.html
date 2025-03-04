@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Parts Ordering System</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">TURBO<span>PARTS</span></div>
+            <!-- Shopping cart icon with counter -->
+            <div id="cart-icon" style="position: relative; cursor: pointer;">
+                <span style="font-size: 24px;">🛒</span>
+                <span id="cart-count" style="position: absolute; top: -5px; right: -5px; background-color: #ff4500; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</span>
+            </div>
+        </div>
+                
+        <!-- Navigation Menu Bar -->
+        <div class="nav-menu">
+            <button class="nav-button active" data-category="all">All Parts</button>
+            <button class="nav-button" data-category="engine">Engine</button>
+            <button class="nav-button" data-category="electrical">Electrical</button>
+            <button class="nav-button" data-category="brakes">Brakes & Suspension</button>
+            <button class="nav-button" data-category="forced">Forced Induction</button>
+            <button class="nav-button" data-category="doors">Doors & Body</button>
+            <button class="nav-button" data-category="tires">Tires</button>
+            <button class="nav-button" data-category="mags">Mags & Wheels</button>
+            <button class="nav-button" data-category="paints">Paints & Exterior</button>
+        </div>
+        
+        <!-- Shopping Cart Section -->
+        <div id="cart-container">
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <div id="empty-cart-message">Your cart is empty</div>
+            </div>
+            <div id="cart-total">Total: ₱0.00</div>
+            <button id="checkout-btn">Proceed to Checkout</button>
+        </div>
+                
+        <div id="menuContainer">
+            <div class="menu-section" data-section="engine">
+                <h2><span class="category-icon">🔧</span>Engine Components</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="part-image" style="background-image: url('https://via.placeholder.com/150/222222/666666?text=Pistons');"></div>
+                        <h3>High-Performance Pistons <span class="badge">Popular</span></h3>
+                        <p>Forged aluminum pistons for increased durability and performance</p>
+                        <span class="price">₱7,539.42</span>
+                        <div>
+                            <label for="qty_pistons">Quantity:</label>
+                            <input type="number" id="qty_pistons" name="items[pistons]" class="quantity" min="0" value="0" data-price="7539.42" data-name="High-Performance Pistons">
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="part-image" style="background-image: url('https://via.placeholder.com/150/222222/666666?text=Camshaft');"></div>
+                        <h3>Racing Camshaft Set</h3>
+                        <p>Precision-engineered camshafts for improved valve timing and power</p>
+                        <span class="price">₱12,495.99</span>
+                        <div>
+                            <label for="qty_camshaft">Quantity:</label>
+                            <input type="number" id="qty_camshaft" name="items[camshaft]" class="quantity" min="0" value="0" data-price="12495.99" data-name="Racing Camshaft Set">
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="part-image" style="background-image: url('https://via.placeholder.com/150/222222/666666?text=Connecting+Rods');"></div>
+                        <h3>Titanium Connecting Rods</h3>
+                        <p>Lightweight titanium connecting rods for reduced rotating mass</p>
+                        <span class="price">₱15,875.50</span>
+                        <div>
+                            <label for="qty_connecting_rods">Quantity:</label>
+                            <input type="number" id="qty_connecting_rods" name="items[connecting_rods]" class="quantity" min="0" value="0" data-price="15875.50" data-name="Titanium Connecting Rods">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-section" data-section="electrical">
+                <h2><span class="category-icon">⚡</span>Electrical Systems</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="part-image" style="background-image: url('https://via.placeholder.com/150/222222/666666?text=ECU');"></div>
+                        <h3>Programmable ECU <span class="badge">Popular</span></h3>
+                        <p>Fully programmable engine control unit with wireless tuning capability</p>
+                        <span class="price">₱32,899.00</span>
+                        <div>
+                            <label for="qty_ecu">Quantity:</label>
+                            <input type="number" id="qty_ecu" name="items[ecu]" class="quantity" min="0" value="0" data-price="32899.00" data-name="Programmable ECU">
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="part-image" style="background-image: url('https://via.placeholder.com/150/222222/666666?text=Ignition+Coils');"></div>
+                        <h3>High-Output Ignition Coils</h3>
+                        <p>Enhanced ignition coils for stronger spark and better combustion</p>
+                        <span class="price">₱4,250.75</span>
+                        <div>
+                            <label for="qty_ignition">Quantity:</label>
+                            <input type="number" id="qty_ignition" name="items[ignition]" class="quantity" min="0" value="0" data-price="4250.75" data-name="High-Output Ignition Coils">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-section" data-section="brakes">
+                <h2><span class="category-icon">🛑</span>Brakes & Suspension</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="part-image" style="background-image: url('https://via.placeholder.com/150/222222/666666?text=Brake+Kit');"></div>
+                        <h3>Performance Brake Kit <span class="badge">Popular</span></h3>
+                        <p>Complete kit with slotted rotors and high-temperature brake pads</p>
+                        <span class="price">₱21,499.95</span>
+                        <div>
+                            <label for="qty_brakes">Quantity:</label>
+                            <input type="number" id="qty_brakes" name="items[brakes]" class="quantity" min="0" value="0" data-price="21499.95" data-name="Performance Brake Kit">
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="part-image" style="background-image: url('https://via.placeholder.com/150/222222/666666?text=Coilovers');"></div>
+                        <h3>Adjustable Coilover Kit</h3>
+                        <p>32-way adjustable damping with customizable ride height</p>
+                        <span class="price">₱28,750.00</span>
+                        <div>
+                            <label for="qty_coilovers">Quantity:</label>
+                            <input type="number" id="qty_coilovers" name="items[coilovers]" class="quantity" min="0" value="0" data-price="28750.00" data-name="Adjustable Coilover Kit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Receipt Modal -->
+    <div id="receipt-modal">
+        <div class="receipt-content">
+            <div class="receipt-header">
+                <div class="logo">TURBO<span>PARTS</span></div>
+                <p>Auto Performance Parts Store</p>
+                <p id="receipt-date"></p>
+                <p id="receipt-number"></p>
+            </div>
+            
+            <h3>Purchase Receipt</h3>
+            <div class="receipt-items" id="receipt-items-list">
+                <!-- Receipt items will be populated here -->
+            </div>
+            
+            <div class="receipt-total">
+                <span>Total Amount:</span>
+                <span id="receipt-total-amount"></span>
+            </div>
+            
+            <div class="receipt-info">
+                <p>Thank you for shopping at TURBOPARTS!</p>
+                <p>All parts have 30-day warranty.</p>
+                <p>For support: support@turboparts.com</p>
+            </div>
+            
+            <button class="print-receipt" id="print-receipt">Print Receipt</button>
+            <button class="close-receipt" id="close-receipt">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize variables
+            let cart = [];
+            let cartTotal = 0;
+            
+            // Get DOM elements
+            const cartItems = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const cartCount = document.getElementById('cart-count');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const quantityInputs = document.querySelectorAll('.quantity');
+            const receiptModal = document.getElementById('receipt-modal');
+            const closeReceiptBtn = document.getElementById('close-receipt');
+            const printReceiptBtn = document.getElementById('print-receipt');
+            const receiptItemsList = document.getElementById('receipt-items-list');
+            const receiptTotalAmount = document.getElementById('receipt-total-amount');
+            const receiptDate = document.getElementById('receipt-date');
+            const receiptNumber = document.getElementById('receipt-number');
+            
+            // Filter navigation
+            const navButtons = document.querySelectorAll('.nav-button');
+            const menuSections = document.querySelectorAll('.menu-section');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show all sections or just the selected category
+                    if (category === 'all') {
+                        menuSections.forEach(section => {
+                            section.style.display = 'block';
+                        });
+                    } else {
+                        menuSections.forEach(section => {
+                            if (section.getAttribute('data-section') === category) {
+                                section.style.display = 'block';
+                            } else {
+                                section.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Handle quantity changes
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const quantity = parseInt(this.value);
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const name = this.getAttribute('data-name');
+                    const id = this.id.replace('qty_', '');
+                    
+                    // Find if item already exists in cart
+                    const existingItemIndex = cart.findIndex(item => item.id === id);
+                    
+                    if (quantity > 0) {
+                        if (existingItemIndex >= 0) {
+                            // Update existing item
+                            cart[existingItemIndex].quantity = quantity;
+                        } else {
+                            // Add new item
+                            cart.push({
+                                id: id,
+                                name: name,
+                                price: price,
+                                quantity: quantity
+                            });
+                        }
+                    } else {
+                        // Remove item if quantity is 0
+                        if (existingItemIndex >= 0) {
+                            cart.splice(existingItemIndex, 1);
+                        }
+                    }
+                    
+                    // Update cart display
+                    updateCart();
+                });
+            });
+            
+            // Update cart display
+            function updateCart() {
+                // Clear cart items
+                cartItems.innerHTML = '';
+                
+                // Calculate total
+                cartTotal = 0;
+                let totalItems = 0;
+                
+                // Check if cart is empty
+                if (cart.length === 0) {
+                    cartItems.innerHTML = '<div id="empty-cart-message">Your cart is empty</div>';
+                } else {
+                    // Add items to cart
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        cartTotal += itemTotal;
+                        totalItems += item.quantity;
+                        
+                        const cartItem = document.createElement('div');
+                        cartItem.className = 'cart-item';
+                        cartItem.innerHTML = `
+                            <div class="cart-item-details">
+                                <div class="cart-item-name">${item.name} (x${item.quantity})</div>
+                                <div class="cart-item-price">₱${itemTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                            </div>
+                            <button class="remove-item" data-id="${item.id}">✕</button>
+                        `;
+                        
+                        cartItems.appendChild(cartItem);
+                    });
+                    
+                    // Add event listeners to remove buttons
+                    const removeButtons = document.querySelectorAll('.remove-item');
+                    removeButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            // Find the item in cart
+                            const itemIndex = cart.findIndex(item => item.id === id);
+                            if (itemIndex >= 0) {
+                                // Remove item from cart
+                                cart.splice(itemIndex, 1);
+                                // Reset the corresponding quantity input
+                                document.getElementById(`qty_${id}`).value = 0;
+                                // Update cart
+                                updateCart();
+                            }
+                        });
+                    });
+                }
+                
+                // Update cart total
+                cartTotalElement.textContent = `Total: ₱${cartTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                
+                // Update cart count
+                cartCount.textContent = totalItems;
+            }
+            
+            // Checkout button click event
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty. Please add items before checking out.');
+                    return;
+                }
+                
+                // Generate receipt
+                generateReceipt();
+                
+                // Show receipt modal
+                receiptModal.style.display = 'flex';
+            });
+            
+            // Close receipt modal
+            closeReceiptBtn.addEventListener('click', function() {
+                receiptModal.style.display = 'none';
+            });
+            
+            // Print receipt
+            printReceiptBtn.addEventListener('click', function() {
+                window.print();
+            });
+            
+            // Generate receipt
+            function generateReceipt() {
+                // Set receipt date
+                const now = new Date();
+                receiptDate.textContent = `Date: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+                
+                // Generate receipt number
+                const receiptNum = 'INV-' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+                receiptNumber.textContent = `Receipt #: ${receiptNum}`;
+                
+                // Clear existing receipt items
+                receiptItemsList.innerHTML = '';
+                
+                // Add items to receipt
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    
+                    const receiptItem = document.createElement('div');
+                    receiptItem.className = 'receipt-item';
+                    receiptItem.innerHTML = `
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>₱${itemTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                    `;
+                    
+                    receiptItemsList.appendChild(receiptItem);
+                });
+                
+                // Set total amount
+                receiptTotalAmount.textContent = `₱${cartTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            }
+            
+            // Click outside modal to close
+            window.addEventListener('click', function(event) {
+                if (event.target === receiptModal) {
+                    receiptModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
